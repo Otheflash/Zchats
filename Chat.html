@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat Website</title>
+    <style>
+      /* CSS for the chat window */
+      #chat-window {
+        border: 1px solid black;
+        height: 400px;
+        width: 600px;
+        overflow-y: scroll;
+      }
+
+      /* CSS for the message input box and username input box */
+      input {
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+  Welcome to Zchat, the completely anonymous direct web-chat website
+
+  If you reload the website it will wipe the chat.
+    <div id="chat-window"></div>
+    <input type="text" id="username-input" placeholder="Enter username">
+    <input type="text" id="message-input" placeholder="Type a message">
+    <button id="send-button">Send</button>
+
+    <script>
+      // JavaScript to handle sending messages
+      const chatWindow = document.getElementById('chat-window');
+      const usernameInput = document.getElementById('username-input');
+      const messageInput = document.getElementById('message-input');
+      const sendButton = document.getElementById('send-button');
+
+      let username = '';
+
+      usernameInput.addEventListener('change', () => {
+        username = usernameInput.value;
+      });
+
+      sendButton.addEventListener('click', () => {
+        const message = messageInput.value;
+        if (username && message) {
+          const messageElement = document.createElement('p');
+          messageElement.textContent = `${username}: ${message}`;
+          chatWindow.appendChild(messageElement);
+          messageInput.value = '';
+        }
+      });
+    </script>
+  </body>
+</html>
